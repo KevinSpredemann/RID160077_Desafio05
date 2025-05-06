@@ -6,7 +6,10 @@ async function createBookController(req, res) {
     const createdBook = await bookServices.createBookService(newBook);
     res.status(201).send(createdBook);
   } catch (error) {
-    return res.status(400).send({ error: error.message });
+    return res.status(400).send({
+      error: error?.message || "Erro desconhecido",
+      details: error
+    });
   }
 }
 
